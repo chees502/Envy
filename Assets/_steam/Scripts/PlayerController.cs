@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerController : MonoBehaviour {
-    public ActorController actor; 
+public class PlayerController : ActorController{
     public KeyLayout key;
 
     void Awake()
     {
-        actor = gameObject.AddComponent<ActorController>();
+        base.Awake();
         key = new KeyLayout();
     }
 
@@ -21,24 +20,24 @@ public class PlayerController : MonoBehaviour {
     {
         if (Input.GetKey(key.left))
         {
-            actor.Move(-1);
+            Move(-1);
         }
         if (Input.GetKey(key.right))
         {
-            actor.Move(1);
+            Move(1);
         }
         if (Input.GetKey(key.up))
         {
-            actor.MoveY(1);
+            MoveY(1);
         }
         if (Input.GetKey(key.down))
         {
-            actor.MoveY(-1);
+            MoveY(-1);
         }
-        if (Input.GetKeyDown(key.jump))
+        if (Input.GetKey(key.jump))
         {
-            actor.Jump();
+            Jump();
         }
-	
+        base.Update();
 	}
 }
